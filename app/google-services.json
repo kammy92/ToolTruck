@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "512508544864",
+    "firebase_url": "https://tooltruck-f9afd.firebaseio.com",
+    "project_id": "tooltruck-f9afd",
+    "storage_bucket": "tooltruck-f9afd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512508544864:android:30af0b1aabc9e644",
+        "android_client_info": {
+          "package_name": "com.tooltruck"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512508544864-pffrk5fdccfuvt50pf4tp1emmgmflbdl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUDAHlPPmmObwaXT7gtzmZOCaTL1QrNp0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
