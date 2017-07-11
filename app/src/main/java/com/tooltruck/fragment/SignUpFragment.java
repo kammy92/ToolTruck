@@ -19,7 +19,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,27 +43,41 @@ import com.tooltruck.utils.Utils;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
+
+import mabbas007.tagsedittext.TagsEditText;
 
 /**
  * Created by l on 20/03/2017.
  */
 
-public class SignUpFragment extends Fragment {
+public class SignUpFragment extends Fragment implements TagsEditText.TagsEditListener, View.OnClickListener {
+    private static final String TAG = "MainActivity";
+    final List<String> list = new ArrayList<String> ();
     EditText etName;
     EditText etEmail;
     EditText etMobile;
     CoordinatorLayout clMain;
     ProgressDialog progressDialog;
     TextView tvTerm;
-    
     TextView tvSignUp;
-    
     UserDetailsPref userDetailsPref;
-    
-    
+    Spinner spRole;
+    EditText etCompanyAddress;
+    EditText etCompanyAddress2;
+    EditText etCompanyName;
+    EditText etCompanyZipCode;
+    EditText etCompanyZipCode2;
+    LinearLayout llDriver;
+    LinearLayout llTechnician;
+    private TagsEditText mTagsEditText;
+
     @Override
     public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate (R.layout.fragment_sign_up, container, false);
@@ -76,7 +94,17 @@ public class SignUpFragment extends Fragment {
         tvSignUp = (TextView) rootView.findViewById (R.id.tvSignUp);
         clMain = (CoordinatorLayout) rootView.findViewById (R.id.clMain);
         tvTerm = (TextView) rootView.findViewById (R.id.tvTermConditions);
+        mTagsEditText = (TagsEditText) rootView.findViewById (R.id.tagsEditText);
         Utils.setTypefaceToAllViews (getActivity (), tvSignUp);
+        spRole = (Spinner) rootView.findViewById (R.id.spRole);
+    
+        etCompanyAddress = (EditText) rootView.findViewById (R.id.etCompanyAddress);
+        etCompanyAddress2 = (EditText) rootView.findViewById (R.id.etCompanyAddress2);
+        etCompanyZipCode = (EditText) rootView.findViewById (R.id.etCompanyZip);
+        etCompanyZipCode2 = (EditText) rootView.findViewById (R.id.etCompanyZip2);
+        etCompanyName = (EditText) rootView.findViewById (R.id.etCompanyName);
+        llDriver = (LinearLayout) rootView.findViewById (R.id.llDriver);
+        llTechnician = (LinearLayout) rootView.findViewById (R.id.llTechnician);
     }
     
     private void initData () {
@@ -85,10 +113,60 @@ public class SignUpFragment extends Fragment {
         SpannableString ss = new SpannableString (getResources ().getString (R.string.activity_login_text_i_agree));
         ss.setSpan (new myClickableSpan (1), 17, 35, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         ss.setSpan (new myClickableSpan (2), 40, 54, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan (new ForegroundColorSpan (getResources ().getColor (R.color.colorPrimary)), 17, 35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan (new ForegroundColorSpan (getResources ().getColor (R.color.colorPrimary)), 40, 54, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan (new ForegroundColorSpan (getResources ().getColor (R.color.md_material_blue_600)), 17, 35, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan (new ForegroundColorSpan (getResources ().getColor (R.color.md_material_blue_600)), 40, 54, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvTerm.setText (ss);
         tvTerm.setMovementMethod (LinkMovementMethod.getInstance ());
+    
+        String[] title = {
+                "110077",
+                "110075",
+                "330022",
+                "660099",
+                "220088"
+        };
+    
+        mTagsEditText.setHint ("Zip Code");
+        mTagsEditText.setTagsListener (this);
+        mTagsEditText.setTagsWithSpacesEnabled (true);
+        mTagsEditText.setAdapter (new ArrayAdapter<String> (getActivity (),
+                android.R.layout.simple_dropdown_item_1line, title));
+        mTagsEditText.setThreshold (1);
+    
+    
+        list.add ("Select Role");
+        list.add ("Truck Driver");
+        list.add ("Technician");
+        ArrayAdapter<String> adp1 = new ArrayAdapter<String> (getActivity (), android.R.layout.simple_list_item_1, list);
+        adp1.setDropDownViewResource (android.R.layout.simple_spinner_dropdown_item);
+        spRole.setAdapter (adp1);
+    
+    
+        spRole.setOnItemSelectedListener (new AdapterView.OnItemSelectedListener () {
+            @Override
+            public void onItemSelected (AdapterView<?> arg0, View arg1, int position, long id) {
+                // TODO Auto-generated method stub
+                switch (position) {
+                    case 0:
+                        llDriver.setVisibility (View.GONE);
+                        llTechnician.setVisibility (View.GONE);
+                        break;
+                    case 1:
+                        llDriver.setVisibility (View.VISIBLE);
+                        llTechnician.setVisibility (View.GONE);
+                        break;
+                    case 2:
+                        llDriver.setVisibility (View.GONE);
+                        llTechnician.setVisibility (View.VISIBLE);
+                        break;
+                }
+            }
+        
+            @Override
+            public void onNothingSelected (AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
     
     private void initListener () {
@@ -254,6 +332,25 @@ public class SignUpFragment extends Fragment {
                 }
             });
         }
+    }
+    
+    
+    @Override
+    public void onTagsChanged (Collection<String> tags) {
+        Log.d (TAG, "Tags changed: ");
+        Log.d ("value", Arrays.toString (tags.toArray ()));
+    }
+    
+    @Override
+    public void onEditingFinished () {
+        Log.d (TAG, "OnEditing finished");
+//        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(mTagsEditText.getWindowToken(), 0);
+//        //mTagsEditText.clearFocus();
+    }
+    
+    @Override
+    public void onClick (View v) {
     }
     
     public class myClickableSpan extends ClickableSpan {

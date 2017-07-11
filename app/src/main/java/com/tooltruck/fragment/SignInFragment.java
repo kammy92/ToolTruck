@@ -145,7 +145,18 @@ public class SignInFragment extends Fragment {
                     etEmail.setError (s2);
                     
                 } else {
-                    sendLoginCredentialsToServer (etEmail.getText ().toString ().trim (), etPassword.getText ().toString ().trim ());
+    
+                    userDetailsPref.putIntPref (getActivity (), UserDetailsPref.USER_ID, 1);
+                    userDetailsPref.putStringPref (getActivity (), UserDetailsPref.USER_NAME, "Karman");
+                    userDetailsPref.putStringPref (getActivity (), UserDetailsPref.USER_EMAIL, "karman.singh@actiknowbi.com");
+                    userDetailsPref.putStringPref (getActivity (), UserDetailsPref.USER_MOBILE, "9873684678");
+    
+                    Intent intent = new Intent (getActivity (), MainActivity.class);
+                    intent.setFlags (Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity (intent);
+                    getActivity ().overridePendingTransition (R.anim.slide_in_right, R.anim.slide_out_left);
+
+//                    sendLoginCredentialsToServer (etEmail.getText ().toString ().trim (), etPassword.getText ().toString ().trim ());
                 }
             }
         });

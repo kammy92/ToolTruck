@@ -15,12 +15,9 @@ import android.provider.Settings;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -53,24 +50,13 @@ import com.tooltruck.utils.UserDetailsPref;
 import com.tooltruck.utils.Utils;
 
 public class MainActivity extends AppCompatActivity {
-    
     public static int PERMISSION_REQUEST_CODE = 11;
-    final int CURRENT_LOCATION_REQUEST_CODE = 1;
     GoogleApiClient client;
-    Double currentLatitude = 0.0;
-    Double currentLongitude = 0.0;
-    
     
     Bundle savedInstanceState;
     Toolbar toolbar;
-    RecyclerView rvPropertyList;
-    SwipeRefreshLayout swipeRefreshLayout;
     UserDetailsPref buyerDetailsPref;
     CoordinatorLayout clMain;
-    ImageView ivFilter;
-    ImageView ivMaps;
-    ImageView ivOverflow;
-    Menu menu2;
     ImageView ivNavigation;
     RelativeLayout rlList;
     RelativeLayout rlInternetConnection;
@@ -104,20 +90,13 @@ public class MainActivity extends AppCompatActivity {
     
     private void initView () {
         toolbar = (Toolbar) findViewById (R.id.toolbar);
-        rvPropertyList = (RecyclerView) findViewById (R.id.rvPropertyList);
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById (R.id.swipe_refresh_layout);
         clMain = (CoordinatorLayout) findViewById (R.id.clMain);
-        ivFilter = (ImageView) findViewById (R.id.ivFilter);
-        ivOverflow = (ImageView) findViewById (R.id.ivOverflow);
         ivNavigation = (ImageView) findViewById (R.id.ivNavigation);
-        ivMaps = (ImageView) findViewById (R.id.ivMaps);
-        
         rlInternetConnection = (RelativeLayout) findViewById (R.id.rlInternetConnection);
         rlNoResultFound = (RelativeLayout) findViewById (R.id.rlNoResultFound);
         rlList = (RelativeLayout) findViewById (R.id.rlList);
         tvRetry = (TextView) findViewById (R.id.tvRetry);
         tvResetFilter = (TextView) findViewById (R.id.tvResetFilter);
-        
     }
     
     private void initData () {
@@ -306,7 +285,6 @@ public class MainActivity extends AppCompatActivity {
                 .withSavedInstance (savedInstanceState)
                 .build ();
 
-
 //        if (buyerDetailsPref.getStringPref (MainActivity.this, UserDetailsPref.BUYER_IMAGE).length () != 0) {
 //            headerResult.addProfiles (new ProfileDrawerItem ()
 //                    .withIcon (buyerDetailsPref.getStringPref (MainActivity.this, UserDetailsPref.BUYER_IMAGE))
@@ -325,15 +303,8 @@ public class MainActivity extends AppCompatActivity {
 //                .withItemAnimator (new AlphaCrossFadeAnimator ())
                 .addDrawerItems (
                         new PrimaryDrawerItem ().withName ("Home").withIcon (FontAwesome.Icon.faw_home).withIdentifier (1).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("My Favourites").withIcon (FontAwesome.Icon.faw_heart).withIdentifier (2).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("How It Works").withIcon (FontAwesome.Icon.faw_handshake_o).withIdentifier (3).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("About Us").withIcon (FontAwesome.Icon.faw_info).withIdentifier (4).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("Testimonials").withIcon (FontAwesome.Icon.faw_comments).withIdentifier (5).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("Contact Us").withIcon (FontAwesome.Icon.faw_phone).withIdentifier (6).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("FAQ").withIcon (FontAwesome.Icon.faw_question).withIdentifier (7).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("My Profile").withIcon (FontAwesome.Icon.faw_user).withIdentifier (8).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("Change Password").withIcon (FontAwesome.Icon.faw_key).withIdentifier (9).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
-                        new PrimaryDrawerItem ().withName ("Sign Out").withIcon (FontAwesome.Icon.faw_sign_out).withIdentifier (10).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this))
+                        new PrimaryDrawerItem ().withName ("My Wishlist").withIcon (FontAwesome.Icon.faw_heart).withIdentifier (2).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this)),
+                        new PrimaryDrawerItem ().withName ("Sign Out").withIcon (FontAwesome.Icon.faw_sign_out).withIdentifier (3).withSelectable (false).withTypeface (SetTypeFace.getTypeface (MainActivity.this))
                 )
                 .withSavedInstance (savedInstanceState)
                 .withOnDrawerItemClickListener (new Drawer.OnDrawerItemClickListener () {
@@ -341,22 +312,10 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onItemClick (View view, int position, IDrawerItem drawerItem) {
                         switch ((int) drawerItem.getIdentifier ()) {
                             case 2:
+                                Intent intent = new Intent (MainActivity.this, MyWishlistActivity.class);
+                                startActivity (intent);
                                 break;
                             case 3:
-                                break;
-                            case 4:
-                                break;
-                            case 5:
-                                break;
-                            case 6:
-                                break;
-                            case 7:
-                                break;
-                            case 8:
-                                break;
-                            case 9:
-                                break;
-                            case 10:
                                 showLogOutDialog ();
                                 break;
                         }

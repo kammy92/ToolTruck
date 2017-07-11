@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    android:id="@+id/clMain"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout android:id="@+id/clMain"
+                                                 xmlns:TagsEditText="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -71,6 +71,146 @@
                     android:padding="@dimen/edittext_padding"
                     android:textColorHint="@color/hint_text_color"
                     android:textSize="@dimen/text_size_medium"/>
+
+
+                <Spinner
+                    android:id="@+id/spRole"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/activity_margin"
+                    android:layout_marginRight="@dimen/activity_margin"
+                    android:layout_marginTop="@dimen/activity_margin"
+                    android:background="@drawable/edit_text_background">
+
+                </Spinner>
+
+
+                <LinearLayout
+                    android:id="@+id/llDriver"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/etCompanyName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_margin"
+                        android:layout_marginRight="@dimen/activity_margin"
+                        android:layout_marginTop="@dimen/activity_margin"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_user_name"
+                        android:drawablePadding="@dimen/activity_margin_small"
+                        android:drawableStart="@drawable/ic_user_name"
+                        android:hint="Company name"
+                        android:inputType="textPersonName"
+                        android:lines="1"
+                        android:padding="@dimen/edittext_padding"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/text_size_medium"/>
+
+                    <EditText
+                        android:id="@+id/etCompanyAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_margin"
+                        android:layout_marginRight="@dimen/activity_margin"
+                        android:layout_marginTop="@dimen/activity_margin"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_address"
+                        android:drawablePadding="@dimen/activity_margin_small"
+                        android:drawableStart="@drawable/ic_address"
+                        android:hint="Company Address"
+                        android:inputType="textEmailAddress"
+                        android:lines="1"
+                        android:padding="@dimen/edittext_padding"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/text_size_medium"/>
+
+                    <EditText
+                        android:id="@+id/etCompanyZip"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_margin"
+                        android:layout_marginRight="@dimen/activity_margin"
+                        android:layout_marginTop="@dimen/activity_margin"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_zip"
+                        android:drawablePadding="@dimen/activity_margin_small"
+                        android:drawableStart="@drawable/ic_zip"
+                        android:hint="Company Zip"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:padding="@dimen/edittext_padding"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/text_size_medium"/>
+
+
+                    <mabbas007.tagsedittext.TagsEditText
+                        android:id="@+id/tagsEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_margin"
+                        android:layout_marginRight="@dimen/activity_margin"
+                        android:layout_marginTop="@dimen/activity_margin"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_zip"
+                        android:drawableStart="@drawable/ic_zip"
+                        android:padding="@dimen/edittext_padding"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/text_size_medium"
+                        TagsEditText:allowSpaceInTag="true"
+                        TagsEditText:tagsBackground="@drawable/square_default"
+                        TagsEditText:tagsCloseImageRight="@drawable/tag_close"/>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/llTechnician"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/etCompanyAddress2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_margin"
+                        android:layout_marginRight="@dimen/activity_margin"
+                        android:layout_marginTop="@dimen/activity_margin"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_address"
+                        android:drawablePadding="@dimen/activity_margin_small"
+                        android:drawableStart="@drawable/ic_address"
+                        android:hint="Company Address"
+                        android:inputType="textEmailAddress"
+                        android:lines="1"
+                        android:padding="@dimen/edittext_padding"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/text_size_medium"/>
+
+                    <EditText
+                        android:id="@+id/etCompanyZip2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/activity_margin"
+                        android:layout_marginRight="@dimen/activity_margin"
+                        android:layout_marginTop="@dimen/activity_margin"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableLeft="@drawable/ic_zip"
+                        android:drawablePadding="@dimen/activity_margin_small"
+                        android:drawableStart="@drawable/ic_zip"
+                        android:hint="Company Zip"
+                        android:inputType="number"
+                        android:lines="1"
+                        android:padding="@dimen/edittext_padding"
+                        android:textColorHint="@color/hint_text_color"
+                        android:textSize="@dimen/text_size_medium"/>
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvTermConditions"

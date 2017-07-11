@@ -3,9 +3,9 @@
 
     <stroke
         android:width="0dp"
-        android:color="@color/colorPrimary"/>
+        android:color="@color/primary"/>
 
-    <solid android:color="@color/colorPrimary"/>
+    <solid android:color="@color/primary_dark"/>
 
     <padding
         android:bottom="1dp"

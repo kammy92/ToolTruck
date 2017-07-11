@@ -30,6 +30,9 @@
         <activity
             android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.MyWishlistActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name="com.tooltruck.service.MyFirebaseMessagingService">
             <intent-filter>

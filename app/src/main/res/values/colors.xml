@@ -9,14 +9,7 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
 
-    <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorAccent">#00BCD4</color>
 
-
-    <color name="tab_text_color">#fff</color>
-    <color name="tab_text_color_selected">#7CCD7C</color>
-    <color name="tab_indicator">#7CCD7C</color>
     <color name="text_color_white">#ffffff</color>
     <color name="text_color_offwhite">#e0e0e0</color>
     <color name="hint_color_white">#88ffffff</color>
@@ -34,9 +27,6 @@
     <color name="text_color_yellow">#ffc107</color>
     <color name="progress_dialog_background">#f0bfbfbf</color>
     <color name="color_divider">#c4c4c4</color>
-    <color name="mb_green">#ff99cc00</color>
-    <color name="mb_green_dark">#ff6d9b00</color>
-    <color name="mb_red">#ffff4444</color>
 
     <color name="fab_request">#199494</color>
     <color name="fab_request_pressed">#137474</color>
